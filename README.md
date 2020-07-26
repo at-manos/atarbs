@@ -1,5 +1,5 @@
 # at-manos's Auto-Rice Bootstraping Scripts (ATARBS)
-
+# Obviously forked from [LARBS by Luke Smith](https://github.com/LukeSmithxyz/LARBS)
 
 ## Installation:
 
