@@ -247,5 +247,7 @@ finalize
 clear
 su $name
 echo "Please wait... Deploying dotfiles."
+rm -rf /home/$name/.local/share/chezmoi
+cd /home/$name
 chezmoi init $dotfilesrepo
 chezmoi apply
