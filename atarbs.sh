@@ -244,10 +244,10 @@ killall pulseaudio; sudo -u "$name" pulseaudio --start
 
 # Last message! Install complete!
 finalize
-clear
-su $name
+sudo su $name
 echo "Please wait... Deploying dotfiles."
 rm -rf /home/$name/.local/share/chezmoi
 cd /home/$name
-chezmoi init $dotfilesrepo
+chezmoi init -D /home/$name $dotfilesrepo
 chezmoi apply
+clear
