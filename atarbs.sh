@@ -216,7 +216,7 @@ dialog --title "LARBS Installation" --infobox "Finally, installing \`libxft-bgra
 yes | sudo -u "$name" $aurhelper -S libxft-bgra >/dev/null 2>&1
 
 # Install the dotfiles in the user's home directory
-chezmoi init $dotfilesrepo
+chezmoi init $dotfilesrepo -D /home/$name
 chezmoi apply
 rm -f "/home/$name/README.md" "/home/$name/LICENSE" "/home/$name/FUNDING.yml"
 # make git ignore deleted LICENSE & README.md files
