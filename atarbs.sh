@@ -216,13 +216,12 @@ dialog --title "LARBS Installation" --infobox "Finally, installing \`libxft-bgra
 yes | sudo -u "$name" $aurhelper -S libxft-bgra >/dev/null 2>&1
 
 # Install the dotfiles in the user's home directory
-rm -f "/home/$name/README.md" "/home/$name/LICENSE" "/home/$name/FUNDING.yml"
-# make git ignore deleted LICENSE & README.md files
-git update-index --assume-unchanged "/home/$name/README.md"
-git update-index --assume-unchanged "/home/$name/LICENSE"
-
-# Most important command! Get rid of the beep!
-systembeepoff
+echo "Deploying dotfiles. Please wait."
+rm -rf /home/$name/.local/share/chezmoi
+rm -rf ~/.local/share/chezmoi
+sudo -u "$name" chezmoi init -D /home/$name $dotfilesrepo
+sudo -u "$name" chezmoi apply
+sudo su
 
 # Make zsh the default shell for the user.
 chsh -s /bin/zsh $name >/dev/null 2>&1
@@ -244,10 +243,4 @@ killall pulseaudio; sudo -u "$name" pulseaudio --start
 
 # Last message! Install complete!
 finalize
-sudo su $name
-echo "Please wait... Deploying dotfiles."
-rm -rf /home/$name/.local/share/chezmoi
-cd /home/$name
-chezmoi init -D /home/$name $dotfilesrepo
-chezmoi apply
 clear
